@@ -4,7 +4,7 @@
     "start": {
       "cmd": "deno run index.js",
       "desc": "run my index.js file",
-      "allow": ["net", "read"],
+      "allow": ["net", "read", "env"],
       "unstable": true
     }
   }

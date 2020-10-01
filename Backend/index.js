@@ -1,5 +1,8 @@
+import { config } from "https://deno.land/x/dotenv/mod.ts";
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import { GraphQLService } from "./server.ts";
+
+const { SERVER_PORT } = config();
 
 const app = new Application();
 
@@ -20,4 +23,4 @@ const app = new Application();
 
 app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
 
-await app.listen({ port: 8000 });
+await app.listen({ port: +SERVER_PORT });
