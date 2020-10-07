@@ -7,5 +7,6 @@ import { resolvers } from "./resolvers/index.ts";
 export const GraphQLService = await applyGraphQL<Router>({
   Router,
   typeDefs,
+  context: (ctx) => ctx,
   resolvers,
 });

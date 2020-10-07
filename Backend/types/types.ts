@@ -10,6 +10,7 @@ export enum RoleOptions {
   superAdmin = "SUPERADMIN",
 }
 
+// Shape of User object, mapped to the postgres table
 export interface User {
   id: string;
   username: string;
@@ -23,3 +24,10 @@ export interface User {
   roles: RoleOptions[];
   created_at: string;
 }
+
+export type SignupArgs = Pick<User, "username" | "email" | "password">;
+
+export type UserResponse = Pick<
+  User,
+  "id" | "username" | "email" | "roles" | "created_at"
+>;

@@ -1,11 +1,20 @@
 import { applyGraphQL, gql } from "https://deno.land/x/oak_graphql/mod.ts";
 
 // Graphql Type
-export const typeDefs = (gql as any)`
+export const typeDefs = (gql as any)` 
+enum RoleOptions {
+    CLIENT
+    ITEMEDITOR
+    ADMIN
+    SUPERADMIN
+  }
+
     type User {
+        id: String!,
         username: String!,
         email: String!,
-        password: String!
+        roles: [RoleOptions!]!,
+        created_at: String!
     }
 
     type Query {
