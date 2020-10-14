@@ -10,4 +10,6 @@ export const Query = {
 
     return users;
   },
+
+  user: () => {},
 };

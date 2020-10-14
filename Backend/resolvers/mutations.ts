@@ -13,7 +13,7 @@ import { client } from "./../db/db.ts";
 
 import { queryByEmailString, insertUserString } from "../utils/queryStrings.ts";
 import { createToken, sendToken } from "./../utils/tokenHandler.ts";
-import { SigninArgs } from "../types/types";
+import { SigninArgs } from "../types/types.ts";
 
 export const Mutation = {
   // async for db connection, promise the UserResponse type or null
