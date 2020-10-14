@@ -31,3 +31,5 @@ export type UserResponse = Pick<
   User,
   "id" | "username" | "email" | "roles" | "created_at"
 >;
+
+export type SigninArgs = Omit<SignupArgs, "username">;

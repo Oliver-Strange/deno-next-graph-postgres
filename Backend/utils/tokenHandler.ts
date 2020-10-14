@@ -1,12 +1,12 @@
 import { config } from "https://deno.land/x/dotenv/mod.ts";
-import { validateJwt } from "https://deno.land/x/djwt@v1.7/validate.ts";
+// import { validateJwt } from "https://deno.land/x/djwt@v1.7/validate.ts";
 import {
   makeJwt,
   setExpiration,
   Jose,
   Payload,
 } from "https://deno.land/x/djwt@v1.7/create.ts";
-import type { Cookies } from "https://deno.land/x/oak/mod.ts";
+import { Cookies } from "../deps/oak.ts";
 
 const { TOKEN_KEY, TOKEN_NAME } = config();
 
@@ -32,6 +32,5 @@ export const createToken = (id: string, token_version: number) => {
   return makeJwt({ header, key: TOKEN_KEY, payload });
 };
 
-export const sendToken = (cookies: Cookies, token: string) => {
+export const sendToken = (cookies: Cookies, token: string) =>
   cookies.set(TOKEN_NAME, token, { httpOnly: true });
-};
