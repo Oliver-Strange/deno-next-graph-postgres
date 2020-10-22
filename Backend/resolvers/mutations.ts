@@ -72,7 +72,7 @@ export const Mutation = {
       await client.end();
 
       // Create a jwt and send to the front end so new users are automatically signed in
-      const token = await createToken(newUser.id, newUser.token_version);
+      const token = await createToken(newUser.id, newUser.tokenVersion);
 
       // send jwt to the front end
       sendToken(cookies, token);
@@ -119,7 +119,7 @@ export const Mutation = {
       await client.end();
 
       // Create a jwt and send to the front end so new users are automatically signed in
-      const token = await createToken(user.id, user.token_version);
+      const token = await createToken(user.id, user.tokenVersion);
 
       // send jwt to the front end
       sendToken(cookies, token);

@@ -2,7 +2,7 @@
   "$schema": "https://deno.land/x/denon/schema.json",
   "scripts": {
     "start": {
-      "cmd": "deno run index.js",
+      "cmd": "deno run index.ts",
       "desc": "run my index.js file",
       "allow": ["net", "read", "env"],
       "unstable": true

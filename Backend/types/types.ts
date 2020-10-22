@@ -1,3 +1,13 @@
+import "../deps/oak.ts";
+
+declare module "../deps/oak.ts" {
+  interface Request {
+    userId?: string;
+    tokenVersion?: number;
+    exp?: number;
+  }
+}
+
 export enum Provider {
   facebook = "Facebook",
   google = "Google",
@@ -16,7 +26,7 @@ export interface User {
   username: string;
   email: string;
   password: string;
-  token_version: number;
+  tokenVersion: number;
   reset_password_token?: string;
   reset_password_token_expiry?: number;
   facebook_id?: string;
@@ -26,10 +36,28 @@ export interface User {
 }
 
 export type SignupArgs = Pick<User, "username" | "email" | "password">;
+export type SigninArgs = Omit<SignupArgs, "username">;
 
 export type UserResponse = Pick<
   User,
   "id" | "username" | "email" | "roles" | "created_at"
 >;
 
-export type SigninArgs = Omit<SignupArgs, "username">;
+export type PayloadInfo = {
+  id: string;
+  tokenVersion: number;
+};
+
+export type ResponseMessage = {
+  message: string;
+};
+
+export type UpdateRolesArgs = {
+  id: string;
+  roles: RoleOptions[];
+};
+
+export type SocialMediaLoginArgs = Pick<User, "id" | "username" | "email"> & {
+  expiration: string;
+  provider: Provider;
+};

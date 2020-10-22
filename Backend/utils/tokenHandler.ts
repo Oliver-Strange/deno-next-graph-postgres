@@ -1,5 +1,5 @@
 import { config } from "https://deno.land/x/dotenv/mod.ts";
-// import { validateJwt } from "https://deno.land/x/djwt@v1.7/validate.ts";
+import { validateJwt } from "https://deno.land/x/djwt@v1.7/validate.ts";
 import {
   makeJwt,
   setExpiration,
@@ -7,6 +7,7 @@ import {
   Payload,
 } from "https://deno.land/x/djwt@v1.7/create.ts";
 import { Cookies } from "../deps/oak.ts";
+import { PayloadInfo } from "../types/types.ts";
 
 const { TOKEN_KEY, TOKEN_NAME } = config();
 
@@ -18,10 +19,10 @@ const header: Jose = {
 // token expires in 15 days
 const tokenExpiration = Date.now() + 1000 * 60 * 60 * 24 * 15;
 
-export const createToken = (id: string, token_version: number) => {
-  const payloadInfo: { id: string; token_version: number } = {
+export const createToken = (id: string, tokenVersion: number) => {
+  const payloadInfo: PayloadInfo = {
     id,
-    token_version,
+    tokenVersion,
   };
 
   const payload: Payload = {
@@ -34,3 +35,6 @@ export const createToken = (id: string, token_version: number) => {
 
 export const sendToken = (cookies: Cookies, token: string) =>
   cookies.set(TOKEN_NAME, token, { httpOnly: true });
+
+export const verifyToken = (token: string) =>
+  validateJwt({ jwt: token, key: TOKEN_KEY, algorithm: "HS256" });
